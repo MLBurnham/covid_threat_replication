@@ -14,12 +14,15 @@ rx1x2y <- cor(users$con*users$death_rate, users$threat_min)
 rx1y <- cor(users$con, users$threat_min)
 rx2y <- cor(users$death_rate, users$threat_min)
 rx1x2 <- cor(users$con, users$death_rate)
+# difference in correlation by making ideology binary.
+cor(users$ideology*users$death_rate, users$threat_min) - rx1x2y
 
 test_power <- power_interaction(
   n.iter = 1000,
   alpha = .05,            
   N = nrow(users),                  
-  r.x1x2.y = seq(.01, .26, .01), 
+  #r.x1x2.y = seq(.01, .26, .02),
+  r.x1x2.y = c(.01, .015, .02, .025, .03, .05, .075, .1, .2, .3), 
   r.x1.y = rx1y,              
   r.x2.y = rx2y,              
   r.x1.x2 = rx1x2,
@@ -34,20 +37,22 @@ death.plt <- plot_power_curve(test_power, power_target=0) +
     geom_vline(xintercept=rx1x2y,
                color="red") + 
     ylim(-.05, 1.05)
+death.plt
 
-test_power
 
 # Infected power analysis
 rx1x2y <- cor(users$con*users$infect_rate, users$threat_min)
 rx1y <- cor(users$con, users$threat_min)
 rx2y <- cor(users$infect_rate, users$threat_min)
 rx1x2 <- cor(users$con, users$infect_rate)
+# difference in correlation by making ideology binary.
+cor(users$ideology*users$infect_rate, users$threat_min) - rx1x2y
 
 test_power <- power_interaction(
   n.iter = 1000,
   alpha = .05,            
   N = nrow(users),                  
-  r.x1x2.y = seq(.01, .26, .01), 
+  r.x1x2.y = c(.01, .015, .02, .025, .03, .05, .075, .1, .2, .3), 
   r.x1.y = rx1y,              
   r.x2.y = rx2y,              
   r.x1.x2 = rx1x2,
@@ -66,16 +71,3 @@ infect.plt <- plot_power_curve(test_power, power_target=0) +
 
 
 grid.arrange(death.plt, infect.plt, ncol=1)
-
-
-# simulation
-library(MASS)
-var(users$threat_min)
-mu <- mean(users$threat_min)
-
-k <- mu**2/(var(users$threat_min) - mu)
-mu/(k-1)
-
-rnbinom(n = nrow(users), size = 0.246984884, mu = users$threat_min)
-
-fitdistr(users$threat_min, densfun = "negative binomial")
