@@ -10,12 +10,12 @@ users <- read.csv('users.csv')
 users$con <- ifelse(users$ideology > -0.167, 1, 0)
 
 # death rate power analysis
-rx1x2y <- cor(users$con*users$death_rate, users$threat_min)
-rx1y <- cor(users$con, users$threat_min)
-rx2y <- cor(users$death_rate, users$threat_min)
+rx1x2y <- cor(users$con*users$death_rate, users$non_compliant)
+rx1y <- cor(users$con, users$non_compliant)
+rx2y <- cor(users$death_rate, users$non_compliant)
 rx1x2 <- cor(users$con, users$death_rate)
 # difference in correlation by making ideology binary.
-cor(users$ideology*users$death_rate, users$threat_min) - rx1x2y
+cor(users$ideology*users$death_rate, users$non_compliant) - rx1x2y
 
 test_power <- power_interaction(
   n.iter = 1000,
@@ -41,12 +41,12 @@ death.plt
 
 
 # Infected power analysis
-rx1x2y <- cor(users$con*users$infect_rate, users$threat_min)
-rx1y <- cor(users$con, users$threat_min)
-rx2y <- cor(users$infect_rate, users$threat_min)
+rx1x2y <- cor(users$con*users$infect_rate, users$non_compliant)
+rx1y <- cor(users$con, users$non_compliant)
+rx2y <- cor(users$infect_rate, users$non_compliant)
 rx1x2 <- cor(users$con, users$infect_rate)
 # difference in correlation by making ideology binary.
-cor(users$ideology*users$infect_rate, users$threat_min) - rx1x2y
+cor(users$ideology*users$infect_rate, users$non_compliant) - rx1x2y
 
 test_power <- power_interaction(
   n.iter = 1000,

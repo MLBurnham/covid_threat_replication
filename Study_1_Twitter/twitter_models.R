@@ -47,7 +47,7 @@ t.test(x, y)
 # NB models infection
 #####################
 
-fit_infect1 <- glm.nb(threat_min ~ 
+fit_infect1 <- glm.nb(non_compliant ~ 
                        # Ideology and Death
                        ideology +
                        infect_rate + 
@@ -61,7 +61,7 @@ fit_infect1 <- glm.nb(threat_min ~
                      data = users)
 summary(fit_infect1)
 
-fit_infect2 <- glm.nb(threat_min ~ 
+fit_infect2 <- glm.nb(non_compliant ~ 
                         # Ideology and Death
                         ideology +
                         infect_rate +
@@ -76,7 +76,7 @@ fit_infect2 <- glm.nb(threat_min ~
                       data = users)
 summary(fit_infect2)
 
-fit_infect3 <- glm.nb(threat_min ~ 
+fit_infect3 <- glm.nb(non_compliant ~ 
                         # Ideology and Infection
                         ideology +
                         infect_rate + 
@@ -106,7 +106,7 @@ fit_infect3 <- glm.nb(threat_min ~
                       data = users)
 summary(fit_infect3)
 
-fit_infect4 <- glm.nb(threat_min ~ 
+fit_infect4 <- glm.nb(non_compliant ~ 
                         # Ideology and Infection
                         ideology +
                         infect_rate + 
@@ -177,7 +177,7 @@ stargazer(fit_infect1, fit_infect2, fit_infect3, fit_infect4,
 #NB models death
 ################
 
-fit_death1 <- glm.nb(threat_min ~ 
+fit_death1 <- glm.nb(non_compliant ~ 
                         # Ideology and Death
                         ideology +
                         death_rate + 
@@ -191,7 +191,7 @@ fit_death1 <- glm.nb(threat_min ~
                       data = users)
 summary(fit_death1)
 
-fit_death2 <- glm.nb(threat_min ~ 
+fit_death2 <- glm.nb(non_compliant ~ 
                        # Ideology and Death
                        ideology +
                        death_rate +
@@ -206,7 +206,7 @@ fit_death2 <- glm.nb(threat_min ~
                      data = users)
 summary(fit_death2)
 
-fit_death3 <- glm.nb(threat_min ~ 
+fit_death3 <- glm.nb(non_compliant ~ 
                         # Ideology and Death
                         ideology +
                         death_rate + 
@@ -236,7 +236,7 @@ fit_death3 <- glm.nb(threat_min ~
                       data = users)
 summary(fit_death3)
 
-fit_death4 <- glm.nb(threat_min ~ 
+fit_death4 <- glm.nb(non_compliant ~ 
                        # Ideology and Death
                        ideology +
                        death_rate + 
@@ -307,7 +307,7 @@ stargazer(fit_death1, fit_death2, fit_death3, fit_death4,
 ####################
 
 # refit model with glm so it can pass to the interplot function
-death4glm <- glm(threat_min ~ death_rate + 
+death4glm <- glm(non_compliant ~ death_rate + 
                    ideology +
                    death_rate*ideology +
                    offset(log(tweets)) +
