@@ -6,7 +6,7 @@ users <- read.csv('users.csv')
 
 # variables are normalized during the simulation. This poses a problem for ideology
 # since the distribution is strongly bimodal. We therefore convert it to a binary variable
-# for the power analysis. This weakens the correlations.
+# for the power analysis.
 users$con <- ifelse(users$ideology > -0.167, 1, 0)
 
 # death rate power analysis
