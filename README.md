@@ -16,7 +16,9 @@ This is the replication archive for Perceived Risk, Political Polarization, and 
 - twitter_models.R: R script to replicate the models presented in Study 1.
 - twitter_PA.R: R script to replicate power analysis for Twitter data.
 - users.csv: User level data that includes ideology, twitter activity, and county level demographics and covid data. Used by twitter_models.R
+- twitter_model_vars.xlsx: Variable names and descriptions for the users.csv data
 
 ### Study 2: Survey
 - aarc_survey_analysis.R: Contains regression and power analysis for study 2.
 - sessionInfo: Packages and versions used for aarc_survey_analysis.R.
+- surv_model_vars.xlsx: Variable names and descriptions for the AARC data
